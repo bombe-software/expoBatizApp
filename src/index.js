@@ -38,17 +38,17 @@ class ExpoBatiz extends Component {
                     >
 
                         <Scene title='Proyectos' key='exposicion_root' iconName="list" icon={this.renderTabIcon}>
-                            <Scene key='index_exposicion_root' component={Exposicion}></Scene>
-                            <Scene key='academia_exposicion_root' component={Academia}></Scene>
-                            <Scene key='proyecto_exposicion_root' component={Proyecto}></Scene>
-                        </Scene>
-
-                        <Scene title='Escanear' key='qr_root' iconName="qrcode" icon={this.renderTabIcon}>
-                            <Scene key='index_qr_root' component={() => { return (<Text>QR</Text>) }}></Scene>
+                            <Scene title='Proyectos' key='index_exposicion_root' component={Exposicion}></Scene>
+                            <Scene title='Academia' key='academia_exposicion_root' component={Academia}></Scene>
+                            <Scene title='Proyecto' key='proyecto_exposicion_root' component={Proyecto}></Scene>
                         </Scene>
 
                         <Scene title='Comentarios' key='comentarios_root' iconName="comments" icon={this.renderTabIcon}>
                             <Scene key='index_comentario_root' component={Comentario}></Scene>
+                        </Scene>
+
+                        <Scene title='Escanear' key='qr_root' iconName="qrcode" icon={this.renderTabIcon}>
+                            <Scene key='index_qr_root' component={() => { return (<Text>QR</Text>) }}></Scene>
                         </Scene>
 
                     </Scene>
