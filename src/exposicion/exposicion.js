@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
-import { View, Text, Image, Dimensions, StyleSheet, ScrollView, TouchableHighlight } from 'react-native';
+import { View, Image, Dimensions, StyleSheet, ScrollView, TouchableHighlight } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Card, ListItem, Button } from 'react-native-elements'
+import { Card, ListItem, Button,Text } from 'react-native-elements'
 
-var imgRoute = 'https://raw.githubusercontent.com/bombe-software/expoBatizApp/master/assets/images/academias/academia';
-var imagesAcademias = [
-    `${imgRoute}01.PNG`,
-    `${imgRoute}02.PNG`,
-    `${imgRoute}03.PNG`,
-    `${imgRoute}04.PNG`,
-    `${imgRoute}05.PNG`,
-    `${imgRoute}06.PNG`,
-    `${imgRoute}07.PNG`,
+import gradients from '../../assets/gradients';
+import colors from '../../assets/colors';
+//var g = JSON.parse(gradients);
+
+var academias = [
+    'Física',
+    'Matemáticas',
+    'Química',
+    'Programación',
+    'Máquinas y Sistemas Automatizados',
+    'Sistemas Digitales',
 ]
 
 class Exposicion extends Component {
@@ -21,19 +23,31 @@ class Exposicion extends Component {
             <ScrollView>
             <View style={styles.container}>
                 {
-                    imagesAcademias.map((img)=>{
+                    academias.map((academia)=>{
+                        let gradient = gradients[Math.floor(Math.random()*gradients.length)];
+                        let color = colors[Math.floor(Math.random()*colors.length)];
                         return(
                             <TouchableHighlight 
-                                key={img}
-                                onPress={()=>{Actions.academia_exposicion_root({academia: img})}}
+                                key={academia}
+                                onPress={()=>{Actions.academia_exposicion_root({academia, color})}}
                             >
                             <View 
-                                style={styles.rounded_corners_view}>
-                            <Image
-                                source = {{uri : img}}
-                                style={styles.image_canvas}
-                                resizeMode="contain"
-                            />
+                                style={{
+                                    backgroundColor: color,
+                                    flex: 1,
+                                    borderRadius: 8,
+                                    overflow: 'hidden',
+                                    marginBottom: 10,
+                                    marginLeft: 8,
+                                    marginRight: 8,
+                                    padding: 16,
+                                    width: (Dimensions.get('window').width-32)
+                                }}
+                                colors={gradient.colors}    
+                            >
+                            <View>
+                                <Text h4 style={{color: 'white'}}>{academia}</Text>
+                            </View>
                             </View>
                             </TouchableHighlight>
                         );
@@ -44,7 +58,7 @@ class Exposicion extends Component {
         )
     }
 }
-var styles = {
+var styles = StyleSheet.create({
     image_canvas: {
         position: 'relative',
         top: 0,
@@ -59,7 +73,21 @@ var styles = {
     rounded_corners_view: {
         borderRadius: 8,
         overflow: 'hidden',
-        marginBottom: 10
+        marginBottom: 10,
+        marginLeft: 8,
+        marginRight: 8,
+        padding: 16,
+        width: (Dimensions.get('window').width-16)
+    },
+    linearGradient: {
+        flex: 1,
+        borderRadius: 8,
+        overflow: 'hidden',
+        marginBottom: 10,
+        marginLeft: 8,
+        marginRight: 8,
+        padding: 16,
+        width: (Dimensions.get('window').width-32),
     },
     container: {
         padding: 10
@@ -67,6 +95,6 @@ var styles = {
     width_screen: {
         width: Dimensions.get('window').width,
     }
-}
+})
 
 export default Exposicion;

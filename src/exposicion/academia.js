@@ -1,68 +1,73 @@
 import React, { Component } from 'react';
-import { View, Text, Image, Dimensions, StyleSheet, ScrollView, TouchableHighlight } from 'react-native';
+import { View, Image, Dimensions, StyleSheet, ScrollView, TouchableHighlight } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Card, ListItem, Button } from 'react-native-elements'
+import { Card, ListItem, Button, Text } from 'react-native-elements'
+
+proyectos = [
+    {
+        titulo: 'Cañon electomagnético',
+        descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean varius vel justo ac dignissim. Quisque accumsan quam vitae dui malesuada posuere. Vestibulum et diam pellentesque, sagittis diam faucibus, posuere felis. Vivamus faucibus lacus diam, in ultricies lacus porttitor quis. Cras aliquam consequat commodo. '
+    },
+    {
+        titulo: 'Demos - Plataforma Informativa',
+        descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean varius vel justo ac dignissim. Quisque accumsan quam vitae dui malesuada posuere. Vestibulum et diam pellentesque, sagittis diam faucibus, posuere felis. Vivamus faucibus lacus diam, in ultricies lacus porttitor quis. Cras aliquam consequat commodo. '
+    },
+    {
+        titulo: 'Generador de Kelvin',
+        descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean varius vel justo ac dignissim. Quisque accumsan quam vitae dui malesuada posuere. Vestibulum et diam pellentesque, sagittis diam faucibus, posuere felis. Vivamus faucibus lacus diam, in ultricies lacus porttitor quis. Cras aliquam consequat commodo. '
+    },
+    {
+        titulo: 'Bioetanol',
+        descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean varius vel justo ac dignissim. Quisque accumsan quam vitae dui malesuada posuere. Vestibulum et diam pellentesque, sagittis diam faucibus, posuere felis. Vivamus faucibus lacus diam, in ultricies lacus porttitor quis. Cras aliquam consequat commodo. '
+    },
+    {
+        titulo: 'Volcán de bicarbonato',
+        descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean varius vel justo ac dignissim. Quisque accumsan quam vitae dui malesuada posuere. Vestibulum et diam pellentesque, sagittis diam faucibus, posuere felis. Vivamus faucibus lacus diam, in ultricies lacus porttitor quis. Cras aliquam consequat commodo. '
+    },
+    {
+        titulo: 'Dron',
+        descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean varius vel justo ac dignissim. Quisque accumsan quam vitae dui malesuada posuere. Vestibulum et diam pellentesque, sagittis diam faucibus, posuere felis. Vivamus faucibus lacus diam, in ultricies lacus porttitor quis. Cras aliquam consequat commodo. '
+    },
+    {
+        titulo: 'Otro Cañon electomagnético',
+        descripcion: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean varius vel justo ac dignissim. Quisque accumsan quam vitae dui malesuada posuere. Vestibulum et diam pellentesque, sagittis diam faucibus, posuere felis. Vivamus faucibus lacus diam, in ultricies lacus porttitor quis. Cras aliquam consequat commodo. '
+    },
+]
 
 class Academia extends Component {
     render() {
 
         return(
             <ScrollView>
-            <Image
-                source = {{uri : this.props.academia}}
-                style={styles.image_canvas}
-                resizeMode="contain"
-            />
+            <View style={{
+                backgroundColor: this.props.color,
+                flex: 1,
+                overflow: 'hidden',
+                marginBottom: 10,
+                padding: 16,
+                paddingTop: 40,
+                paddingBottom: 40,
+                width: (Dimensions.get('window').width)
+            }}>
+            <Text h3 style={{color:'white'}}>{this.props.academia}</Text>
+            </View>
             <View style={styles.container}>
                 
-                <ListItem
-                    style={styles.list_item}
-                    onPress={()=>{Actions.proyecto_exposicion_root()}}
-                    title='Proyecto 1'
-                    subtitle='Descripción de proyecto'
-                >
-                </ListItem>
-
-                <ListItem
-                    style={styles.list_item}
-                    onPress={()=>{Actions.proyecto_exposicion_root()}}
-                    title='Proyecto 2'
-                    subtitle='Descripción de proyecto'
-                >
-                </ListItem>
-                
-                <ListItem
-                    style={styles.list_item}
-                    onPress={()=>{Actions.proyecto_exposicion_root()}}
-                    title='Proyecto 3'
-                    subtitle='Descripción de proyecto'
-                >
-                </ListItem>
-
-                <ListItem
-                    style={styles.list_item}
-                    onPress={()=>{Actions.proyecto_exposicion_root()}}
-                    title='Proyecto 4'
-                    subtitle='Descripción de proyecto'
-                >
-                </ListItem>
-
-                <ListItem
-                    style={styles.list_item}
-                    onPress={()=>{Actions.proyecto_exposicion_root()}}
-                    title='Proyecto 5'
-                    subtitle='Descripción de proyecto'
-                >
-                </ListItem>
-
-                <ListItem
-                    style={styles.list_item}
-                    onPress={()=>{Actions.proyecto_exposicion_root()}}
-                    title='Proyecto 6'
-                    subtitle='Descripción de proyecto'
-                >
-                </ListItem>
+                {
+                    proyectos.map(({descripcion, titulo})=> {
+                        return(
+                            <ListItem
+                                key={titulo}
+                                style={styles.list_item}
+                                onPress={()=>{Actions.proyecto_exposicion_root({titulo, descripcion})}}
+                                title={titulo}
+                                subtitle={descripcion}
+                            >
+                            </ListItem>
+                        );
+                    })
+                }
   
             </View>
             </ScrollView>
