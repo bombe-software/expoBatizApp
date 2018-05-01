@@ -4,12 +4,26 @@ import { Router, Stack, Scene } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Card, ListItem, Button, Text, Rating, ButtonGroup } from 'react-native-elements'
 
+const list = [
+    {
+      name: 'Amy Farha',
+      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+      subtitle: 'Vice President'
+    },
+    {
+      name: 'Chris Jackson',
+      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+      subtitle: 'Vice Chairman'
+    },
+     // more items
+  ];
+
 class Proyecto extends Component {
 
     constructor () {
         super()
         this.state = {
-          selectedIndex: 2
+          selectedIndex: 0
         }
         this.updateIndex = this.updateIndex.bind(this)
     }
@@ -20,6 +34,31 @@ class Proyecto extends Component {
 
     ratingCompleted(rating) {
         console.log("Rating is: " + rating)
+    }
+
+    renderTab() {
+        if(this.state.selectedIndex === 0){
+            return(
+                <View>
+                {
+                    list.map((l, i) => (
+                    <ListItem
+                        key={i}
+                        avatar={{ source: { uri: l.avatar_url } }}
+                        title={l.name}
+                        subtitle={l.subtitle}
+                    />
+                    ))
+                }
+                </View>
+            );
+        } else if(this.state.selectedIndex === 1){
+            return(
+                <Card>
+                    <Text>Fotos</Text>
+                </Card>
+            );
+        }
     }
 
     render() {
@@ -75,6 +114,9 @@ class Proyecto extends Component {
                         buttons={buttons}
                         containerStyle={{height: 50}}
                     />
+
+                {this.renderTab()}
+
                 <View style={styles.container}>
 
 

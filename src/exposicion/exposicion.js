@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image, Dimensions, StyleSheet, ScrollView, TouchableHighlight } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Card, ListItem, Button,Text } from 'react-native-elements'
 
@@ -53,6 +54,25 @@ class Exposicion extends Component {
                         );
                     })
                 }
+                <ListItem
+                    scaleProps={{
+                    friction: 90,
+                    tension: 100,
+                    activeScale: 0.95,
+                    }}
+                    linearGradientProps={{
+                    colors: ['#FF9800', '#F44336'],
+                    start: [1, 0],
+                    end: [0.2, 0],
+                    }}
+                    ViewComponent={LinearGradient} // Only if no expo
+                    title="Chris Jackson"
+                    titleStyle={{ color: 'white', fontWeight: 'bold' }}
+                    subtitleStyle={{ color: 'white' }}
+                    subtitle="Vice Chairman"
+                    chevronColor="white"
+                    chevron
+                />
             </View>
             </ScrollView>
         )
